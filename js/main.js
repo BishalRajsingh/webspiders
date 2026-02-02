@@ -1,12 +1,29 @@
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+const hasGSAP = typeof window.gsap !== "undefined";
+
 const toggleBtn = document.querySelector(".navbar__toggle");
 const mobileMenu = document.querySelector(".navbar__info");
 
 let menuOpen = false;
 
-const menuTimeline = gsap.timeline({
-  paused: true,
-  defaults: { duration: 0.3, ease: "power2.out" }
-});
+
+let menuTimeline;
+
+if (hasGSAP && !prefersReducedMotion) {
+  menuTimeline = gsap.timeline({
+    paused: true,
+    defaults: { duration: 0.3, ease: "power2.out" }
+  });
+
+  menuTimeline.to(mobileMenu, {
+    opacity: 1,
+    y: 10,
+    pointerEvents: "auto"
+  });
+}
 
 menuTimeline.to(mobileMenu, {
   opacity: 1,
@@ -16,102 +33,54 @@ menuTimeline.to(mobileMenu, {
 
 toggleBtn.addEventListener("click", () => {
   menuOpen = !menuOpen;
-
   toggleBtn.setAttribute("aria-expanded", menuOpen);
 
-  if (menuOpen) {
-    menuTimeline.play();
-  } else {
-    menuTimeline.reverse();
-  }
+  if (!menuTimeline) return;
+
+  menuOpen ? menuTimeline.play() : menuTimeline.reverse();
 });
 
-gsap.from(
-  [".hero__title", ".hero__subtitle", ".hero__actions"],
-  {
-    opacity: 0,
-    y: 30,
-    stagger: 0.2,
-    duration: 0.9,
-    ease: "power3.out",
-    delay: 0.3
-  }
-);
+if (hasGSAP && !prefersReducedMotion) {
+  gsap.from(
+    [".hero__title", ".hero__subtitle", ".hero__actions"],
+    {
+      opacity: 0,
+      y: 30,
+      stagger: 0.2,
+      duration: 0.9,
+      ease: "power3.out",
+      delay: 0.3
+    }
+  );
+}
 
-// feature section
-// gsap.registerPlugin(ScrollTrigger);
 
-// gsap.from(".pub-card", {
-//   scrollTrigger: {
-//     trigger: ".publications",
-//     start: "top 70%",
-//   },
-//   opacity: 0,
-//   y: 60,
-//   duration: 0.9,
-//   stagger: 0.2,
-//   ease: "power3.out",
-// });
 
-document.querySelectorAll(".pub-card").forEach((card) => {
-  const image = card.querySelector("img");
-  const overlay = card;
-  const arrow = card.querySelector(".pub-card__arrow");
+if (hasGSAP && !prefersReducedMotion) {
+  document.querySelectorAll(".pub-card").forEach((card) => {
+    const image = card.querySelector("img");
+    const arrow = card.querySelector(".pub-card__arrow");
 
-  const tl = gsap.timeline({
-    paused: true,
-    defaults: { ease: "power3.inOut" },
+    const tl = gsap.timeline({
+      paused: true,
+      defaults: { ease: "power3.inOut" },
+    });
+
+    tl.to(card, { rotationY: 360, duration: 1.8 })
+      .to(image, { scale: 1.1, duration: 0.6 }, 0)
+      .to(card, { boxShadow: "0 20px 50px rgba(0,0,0,0.4)" }, 0)
+      .to(arrow, { opacity: 1, y: 0 }, 0.5);
+
+    card.addEventListener("mouseenter", () => tl.play());
+    card.addEventListener("mouseleave", () => tl.reverse());
   });
-
-  tl.to(card, {
-    rotationY: 360,
-    duration: 1.8,
-  })
-    .to(
-      image,
-      {
-        scale: 1.1,
-        duration: 0.6,
-      },
-      0
-    )
-    .to(
-      card,
-      {
-        boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
-        duration: 0.4,
-      },
-      0
-    )
-    .to(
-      card,
-      {
-        "--overlay-opacity": 1,
-        duration: 0.3,
-      },
-      0.3
-    )
-    .to(
-      arrow,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-      },
-      0.5
-    );
-
-  card.addEventListener("mouseenter", () => tl.play());
-  card.addEventListener("mouseleave", () => tl.reverse());
-});
+}
 
 
 // pricing cards  
 
 const toggleButtons = document.querySelectorAll(".toggle-btn");
 const priceSpans = document.querySelectorAll(".price span");
-
-// Load saved preference
 const savedPlan = localStorage.getItem("pricingPlan") || "monthly";
 setPricing(savedPlan, false);
 
@@ -132,7 +101,7 @@ function setPricing(plan, animate = true) {
   priceSpans.forEach((span) => {
     const newPrice = span.dataset[plan];
 
-    if (animate) {
+    if (animate && hasGSAP && !prefersReducedMotion) {
       gsap.fromTo(
         span,
         { opacity: 0, y: -10 },
@@ -140,7 +109,9 @@ function setPricing(plan, animate = true) {
           opacity: 1,
           y: 0,
           duration: 0.4,
-          onStart: () => (span.textContent = newPrice),
+          onStart: () => {
+            span.textContent = newPrice;
+          },
         }
       );
     } else {
@@ -150,6 +121,7 @@ function setPricing(plan, animate = true) {
 
   localStorage.setItem("pricingPlan", plan);
 }
+
 
 
 

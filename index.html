@@ -7,24 +7,33 @@
 
     <title>WebSpiders Site</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- css -->
-    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css" />
 
     <!-- font-awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
 </head>
 
 <body>
-
+    <a href="#main-content" class="skip-link">
+        Skip to main content
+    </a>
     <!-- HEADER -->
     <header class="site-header">
         <nav class="navbar" aria-label="Primary navigation">
             <div class="navbar__left">
-                <img src="assets/images/dc_logo.jpg" alt="Daily College Indore logo" class="navbar__logo">
+                <img src="assets/images/dc_logo.jpg" alt="Daily College Indore logo" class="navbar__logo"
+                    loading="lazy">
             </div>
             <div class="navbar__right">
 
@@ -52,73 +61,74 @@
 
 
 
-    <main>
+    <main id="main-content">
 
-        <section class="hero" id="hero">
-            <section class="hero" aria-label="Hero section">
+        <section class="hero" id="hero" aria-label="Hero section">
 
-               
-                <video class="hero__video" autoplay muted loop playsinline aria-hidden="true">
-                    <source src="assets/videos/school-hero-banner.mp4" type="video/mp4" />
-                </video>
 
-               
-                <div class="hero__overlay"></div>
 
-              
-                <div class="hero__content">
-                    <h1 class="hero__title">Live. Learn. Lead.</h1>
-                    <p class="hero__subtitle">Shaping Leaders Since 1882</p>
+            <video class="hero__video" autoplay muted loop playsinline poster="assets/images/hero-poster.jpg"
+                aria-hidden="true">
+                <source src="assets/videos/school-hero-banner.mp4" type="video/mp4" />
+            </video>
 
-                    <div class="hero__actions">
-                        <a href="#" class="btn btn--primary">
-                            <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
-                            Explore Admissions</a>
-                        <a href="#" class="btn btn--outline">
-                            <i class="fa-regular fa-message" aria-hidden="true"></i>
-                            Enquire Now</a>
-                    </div>
+
+            <div class="hero__overlay"></div>
+
+
+            <div class="hero__content">
+                <h1 class="hero__title">Live. Learn. Lead.</h1>
+                <p class="hero__subtitle">Shaping Leaders Since 1882</p>
+
+                <div class="hero__actions">
+                    <button class="btn btn--primary" type="button">
+                        <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Explore Admissions
+                    </button>
+                    <button class="btn btn--outline" type="button">
+                        <i class="fa-regular fa-message" aria-hidden="true"></i> Enquire Now
+                    </button>
                 </div>
+            </div>
 
-                
-                <div class="hero__quick-links-wrap">
-                    <div class="hero__quick-links">
-                        <a href="#" class="quick-link">
-                            <span class="icon">
-                                <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
-                            </span>
-                            <span class="text">
-                                Daly College of Business
-                            </span>
-                        </a>
 
-                        <a href="#" class="quick-link">
-                            <span class="icon">
-                                <i class="fa-regular fa-user" aria-hidden="true"></i>
-                            </span>
-                            <span class="text">Parent’s Login</span>
-                        </a>
+            <div class="hero__quick-links-wrap">
+                <div class="hero__quick-links">
+                    <a href="#" class="quick-link">
+                        <span class="icon">
+                            <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                        </span>
+                        <span class="text">
+                            Daly College of Business
+                        </span>
+                    </a>
 
-                        <a href="#" class="quick-link">
-                            <span class="icon">
-                                <i class="fa-solid fa-people-group" aria-hidden="true"></i>
-                            </span>
-                            <span class="text">Old Dalian Association</span>
-                        </a>
+                    <a href="#" class="quick-link">
+                        <span class="icon">
+                            <i class="fa-regular fa-user" aria-hidden="true"></i>
+                        </span>
+                        <span class="text">Parent’s Login</span>
+                    </a>
 
-                        <a href="#" class="quick-link">
-                            <span class="icon">
-                                <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
-                            </span>
-                            <span class="text">The Daly Prophet</span>
-                        </a>
-                    </div>
+                    <a href="#" class="quick-link">
+                        <span class="icon">
+                            <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+                        </span>
+                        <span class="text">Old Dalian Association</span>
+                    </a>
+
+                    <a href="#" class="quick-link">
+                        <span class="icon">
+                            <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+                        </span>
+                        <span class="text">The Daly Prophet</span>
+                    </a>
                 </div>
-            </section>
+            </div>
+
 
         </section>
 
-           <section class="pricing" id="pricing">
+        <section class="pricing" id="pricing">
             <div class="pricing__container">
 
                 <header class="pricing__header">
@@ -126,7 +136,7 @@
                     <!-- <p>Choose the plan that fits you best.</p> -->
                 </header>
 
-              
+
                 <div class="pricing__toggle-wrapper">
                     <div class="pricing__toggle" role="group" aria-label="Pricing toggle">
                         <button class="toggle-btn is-active" data-plan="monthly" aria-pressed="true">
@@ -138,10 +148,8 @@
                     </div>
                 </div>
 
-                
-                <div class="pricing__grid" aria-live="polite">
 
-                   
+                <div class="pricing__grid" aria-live="polite">
                     <article class="price-card">
                         <span class="price-badge">FREE</span>
 
@@ -175,7 +183,7 @@
                         </ul>
                     </article>
 
-                   
+
                     <article class="price-card featured">
                         <span class="price-badge primary">PRO</span>
 
@@ -213,7 +221,7 @@
                         </ul>
                     </article>
 
-                    
+
                     <article class="price-card dark">
                         <span class="price-badge">ADV</span>
 
@@ -267,7 +275,7 @@
                 <div class="publications__grid">
 
                     <a href="#" class="pub-card">
-                        <img src="assets/images/news-letter.jpg" alt="Read our Newsletter">
+                        <img src="assets/images/news-letter.jpg" alt="Read our Newsletter" loading="lazy">
                         <div class="pub-card__content">
                             <h3>Read Our Newsletter</h3>
                         </div>
@@ -277,7 +285,7 @@
                     </a>
 
                     <a href="#" class="pub-card">
-                        <img src="assets/images/brochure.jpg" alt="Download Brochure">
+                        <img src="assets/images/brochure.jpg" alt="Download Brochure" loading="lazy">
                         <div class="pub-card__content">
                             <h3>Download Brochure</h3>
 
@@ -288,7 +296,7 @@
                     </a>
 
                     <a href="#" class="pub-card">
-                        <img src="assets/images/magazine.jpg" alt="Explore DC Magazine">
+                        <img src="assets/images/magazine.jpg" alt="Explore DC Magazine" loading="lazy">
                         <div class="pub-card__content">
                             <h3>Explore DC Magazine</h3>
 
@@ -303,14 +311,9 @@
             </div>
         </section>
 
-
-     
-
-
-
     </main>
 
-  
+
     <footer class="site-footer">
         <div class="footer__container">
 
@@ -386,15 +389,15 @@
 
                 <div class="footer__social">
                     <a href="#" aria-label="Facebook">
-                        <img src="assets/icons/facebook.png" alt="" />
+                        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
                     </a>
 
                     <a href="#" aria-label="Twitter / X">
-                        <img src="assets/icons/twitter.png" alt="" />
+                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
                     </a>
 
                     <a href="#" aria-label="Instagram">
-                        <img src="assets/icons/instagram.png" alt="" />
+                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                     </a>
 
 
@@ -405,8 +408,6 @@
         </div>
     </footer>
 
-
-   
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>

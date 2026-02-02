@@ -34,3 +34,20 @@ The goal was to demonstrate:
 - No frameworks
 - No heavy libraries
 - Optimized animations
+
+<!-- Animations--- -->
+
+GSAP is loaded via CDN for ease of review.  
+In a production setup, GSAP would be bundled using a build tool to reduce requests and enable tree-shaking.
+
+<!-- -- Build & Optimization-- -->
+
+This project does not include a build step to keep the setup simple and easy to review.
+
+In a production environment, the following optimizations would be applied:
+- JavaScript bundling and minification (e.g. via Vite/Webpack)
+- CSS minification
+- Tree-shaking of animation libraries (GSAP)
+- Asset optimization and cache-busting
+
+For this assignment, files are kept readable and unminified by design.

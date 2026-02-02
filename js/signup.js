@@ -1,11 +1,16 @@
+const hasGSAP = typeof window.gsap !== "undefined";
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
 const form = document.getElementById("signupForm");
 const successMsg = document.querySelector(".success");
 const btn = document.querySelector(".btn");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
   clearErrors();
   successMsg.textContent = "";
 
@@ -21,7 +26,6 @@ form.addEventListener("submit", (e) => {
   }
 
   if (!valid) return;
-  // fakeSubmit().add;
   fakeSubmit();
 });
 
@@ -43,11 +47,15 @@ function fakeSubmit() {
 
     successMsg.textContent = "Signed in successfully !";
 
-    gsap.fromTo(
-      successMsg,
-      { opacity: 0, y: 10 },
-      { opacity: 1, y: 0, duration: 0.6 }
-    );
+    if (hasGSAP && !prefersReducedMotion) {
+      gsap.fromTo(
+        successMsg,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.6 }
+      );
+    } else {
+      successMsg.style.opacity = "1";
+    }
 
     lockForm();
   }, 1500);
