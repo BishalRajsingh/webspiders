@@ -25,11 +25,6 @@ if (hasGSAP && !prefersReducedMotion) {
   });
 }
 
-menuTimeline.to(mobileMenu, {
-  opacity: 1,
-  y: 10,
-  pointerEvents: "auto"
-});
 
 toggleBtn.addEventListener("click", () => {
   menuOpen = !menuOpen;
